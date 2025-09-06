@@ -157,11 +157,216 @@ viskam-app/
 - **Seller Analytics**: Sales performance and growth metrics
 - **Recommendation Engine**: Product recommendations based on user behavior
 
+### AI-Powered Features
+- **Smart Shop Generation**: AI-powered automatic shop details generation using Google Gemini
+- **Professional Content Creation**: AI generates shop names, descriptions, specialties, and business hours
+- **Intelligent Fallback**: Smart fallback system when AI service is unavailable
+- **Cultural Context**: AI trained to understand Sri Lankan handicraft traditions
+
 ### User Experience
 - **Intuitive Navigation**: Tab-based navigation with role switching
 - **Responsive Design**: Optimized for various screen sizes
 - **Offline Support**: Basic offline functionality
 - **Performance Optimized**: Efficient rendering and state management
+
+---
+
+## 🧭 Key Tasks & Navigation Guide
+
+This section outlines the main user journeys and navigation paths for comprehensive testing and understanding of the app's functionality.
+
+### 🔐 Authentication Tasks
+
+#### **Task: User Registration**
+- **Navigation**: Launch App → Register Screen
+- **Path**: `app/index.tsx` → `app/auth/register.tsx`
+- **Screen Component**: `screens/auth/RegisterScreen.tsx`
+- **Key Features**: Form validation, role selection (buyer/seller), bilingual support
+
+#### **Task: User Login**
+- **Navigation**: Launch App → Login Screen
+- **Path**: `app/index.tsx` → `app/auth/login.tsx`
+- **Screen Component**: `screens/auth/LoginScreen.tsx`
+- **Key Features**: Credential validation, role-based routing, "Remember Me" option
+
+#### **Task: Role Switching**
+- **Navigation**: From any authenticated screen → Profile → Switch Role
+- **Context**: `contexts/AuthContext.tsx`
+- **Key Features**: Seamless role transition, state persistence, maintains user data
+
+### 🛒 Buyer User Journey
+
+#### **Task: Browse Products by Category**
+- **Navigation**: Buyer Home → Shop Tab → Category Filter
+- **Path**: `app/buyer/home.tsx` → `app/buyer/shop.tsx`
+- **Screen Component**: `screens/buyer/ShopScreen.tsx`
+- **Key Features**: Category filtering, search functionality, product grid
+
+#### **Task: View Product Details**
+- **Navigation**: Shop → Product Card → Product Details
+- **Path**: `app/buyer/shop.tsx` → `app/buyer/product-details.tsx`
+- **Screen Component**: `screens/buyer/ProductDetailsScreen.tsx`
+- **Key Features**: Image gallery, specifications, seller info, add to cart
+
+#### **Task: Manage Shopping Cart**
+- **Navigation**: Any Screen → Cart Tab → Cart Management
+- **Path**: `app/buyer/cart.tsx`
+- **Screen Component**: `screens/buyer/CartScreen.tsx`
+- **Context**: `contexts/CartContext.tsx`
+- **Key Features**: Quantity adjustment, item removal, price calculation
+
+#### **Task: Complete Purchase**
+- **Navigation**: Cart → Checkout → Payment → Confirmation
+- **Path**: `app/buyer/cart.tsx` → `app/buyer/checkout.tsx`
+- **Screen Component**: `screens/buyer/CheckoutScreen.tsx`
+- **Key Features**: Address management, payment selection, order summary
+
+#### **Task: Track Orders**
+- **Navigation**: Buyer Home → Orders Tab
+- **Path**: `app/buyer/orders.tsx`
+- **Screen Component**: `screens/buyer/OrdersScreen.tsx`
+- **Key Features**: Order status, tracking information, reorder functionality
+
+#### **Task: View Buyer Analytics**
+- **Navigation**: Buyer Home → Analytics Tab
+- **Path**: `app/buyer/analytics.tsx`
+- **Screen Component**: `screens/buyer/AnalyticsScreen.tsx`
+- **Key Features**: Spending insights, purchase history, recommendations
+
+### 🏪 Seller User Journey
+
+#### **Task: Complete Seller Onboarding**
+- **Navigation**: First Seller Login → Onboarding Flow
+- **Path**: `app/seller/onboarding.tsx`
+- **Screen Component**: `screens/seller/OnboardingScreen.tsx`
+- **Key Features**: Business setup, AI shop generation, profile completion
+
+#### **Task: AI-Powered Shop Setup**
+- **Navigation**: Seller Onboarding → Shop Details → AI Generation
+- **Service**: `services/aiService.ts`
+- **Config**: `config/aiConfig.ts`
+- **Key Features**: Google Gemini integration, automated content generation, fallback options
+
+#### **Task: Update Shop Details**
+- **Navigation**: Seller Profile → Edit Shop Details → Update Information
+- **Path**: `app/seller/profile.tsx` → Shop Details Section
+- **Screen Component**: `screens/seller/ProfileScreen.tsx`
+- **Key Features**: Edit shop name, description, specialties, business hours, contact information
+
+#### **Task: Add New Product**
+- **Navigation**: Seller Home → Products Tab → Add Product
+- **Path**: `app/seller/products.tsx` → `app/seller/add-product.tsx`
+- **Screen Component**: `screens/seller/AddProductScreen.tsx`
+- **Key Features**: Image upload, product details, inventory management
+
+#### **Task: Manage Products**
+- **Navigation**: Seller Home → Products Tab
+- **Path**: `app/seller/products.tsx`
+- **Screen Component**: `screens/seller/ProductsScreen.tsx`
+- **Key Features**: Product listing, edit/delete operations, stock status
+
+#### **Task: Process Orders**
+- **Navigation**: Seller Home → Orders Tab
+- **Path**: `app/seller/orders.tsx`
+- **Screen Component**: `screens/seller/OrdersScreen.tsx`
+- **Key Features**: Order management, status updates, customer communication
+
+#### **Task: View Seller Analytics**
+- **Navigation**: Seller Home → Analytics Tab
+- **Path**: `app/seller/analytics.tsx`
+- **Screen Component**: `screens/seller/AnalyticsScreen.tsx`
+- **Key Features**: Sales performance, revenue tracking, growth metrics
+
+#### **Task: Customer Support**
+- **Navigation**: Seller Home → Support Tab
+- **Path**: `app/seller/support.tsx`
+- **Screen Component**: `screens/seller/SupportScreen.tsx`
+- **Key Features**: Help documentation, contact support, tutorials
+
+### 📱 Cross-Platform Tasks
+
+#### **Task: Language Switching**
+- **Navigation**: Any Screen → Profile → Language Settings
+- **Service**: `services/i18n.ts`
+- **Locale Files**: `locales/en.json`, `locales/si.json`
+- **Key Features**: Real-time language switching, complete UI translation
+
+#### **Task: Profile Management**
+- **Navigation**: Profile Tab → Profile Details
+- **Paths**: 
+  - Buyer: `app/buyer/profile-details.tsx`
+  - Seller: `app/seller/profile-details.tsx`
+- **Screen Components**: 
+  - `screens/buyer/ProfileDetailsScreen.tsx`
+  - `screens/seller/ProfileDetailsScreen.tsx`
+- **Key Features**: Personal information, preferences, account settings
+
+#### **Task: Message Center**
+- **Navigation**: Buyer Home → Messages Tab
+- **Path**: `app/buyer/messages.tsx`
+- **Screen Component**: `screens/buyer/MessagesScreen.tsx`
+- **Key Features**: Seller communication, order inquiries, support tickets
+
+#### **Task: Switch Between Buyer and Seller Modes**
+- **Navigation**: Profile Tab → Switch Role Button → Confirm Role Change
+- **Paths**: 
+  - From Buyer: `app/buyer/profile.tsx` → Role Switch → `app/seller/home.tsx`
+  - From Seller: `app/seller/profile.tsx` → Role Switch → `app/buyer/home.tsx`
+- **Context**: `contexts/AuthContext.tsx`
+- **Screen Components**: 
+  - `screens/buyer/ProfileScreen.tsx`
+  - `screens/seller/ProfileScreen.tsx`
+- **Key Features**: 
+  - Instant role transition without re-authentication
+  - Preserves user session and data
+  - Updates navigation tabs and available features
+  - Maintains cart data when switching from buyer mode
+  - Preserves seller inventory and orders when switching from seller mode
+- **Testing Points**:
+  - Verify buyer cart persists after switching to seller and back
+  - Check seller data remains intact after switching to buyer mode
+  - Confirm proper navigation tab updates
+  - Test role-specific feature access after switching
+
+### 🧪 Testing Navigation Paths
+
+#### **Critical User Flows for Testing**
+1. **Complete Buyer Journey**: Registration → Browse → Add to Cart → Checkout → Track Order
+2. **Complete Seller Journey**: Registration → Onboarding → AI Shop Setup → Add Product → Manage Orders
+3. **Role Switching Flow**: Login as Buyer → Switch to Seller → Navigate Features → Switch Back
+4. **Bilingual Testing**: English Interface → Switch to Sinhala → Test All Features → Switch Back
+5. **Cart Persistence**: Add Items → Navigate Away → Return → Verify Cart State
+6. **Authentication Flow**: Logout → Login → Verify State Restoration
+
+#### **Navigation Structure Overview**
+```
+App Root (index.tsx)
+├── Authentication
+│   ├── Login (auth/login.tsx)
+│   └── Register (auth/register.tsx)
+├── Buyer Mode
+│   ├── Home (buyer/home.tsx)
+│   ├── Shop (buyer/shop.tsx)
+│   ├── Product Details (buyer/product-details.tsx)
+│   ├── Cart (buyer/cart.tsx)
+│   ├── Checkout (buyer/checkout.tsx)
+│   ├── Orders (buyer/orders.tsx)
+│   ├── Messages (buyer/messages.tsx)
+│   ├── Analytics (buyer/analytics.tsx)
+│   ├── Profile (buyer/profile.tsx)
+│   ├── Profile Details (buyer/profile-details.tsx)
+│   └── Shop Details (buyer/shop-details.tsx)
+└── Seller Mode
+    ├── Home (seller/home.tsx)
+    ├── Onboarding (seller/onboarding.tsx)
+    ├── Products (seller/products.tsx)
+    ├── Add Product (seller/add-product.tsx)
+    ├── Orders (seller/orders.tsx)
+    ├── Analytics (seller/analytics.tsx)
+    ├── Support (seller/support.tsx)
+    ├── Profile (seller/profile.tsx)
+    └── Profile Details (seller/profile-details.tsx)
+```
 
 ---
 

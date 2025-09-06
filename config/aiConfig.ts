@@ -1,6 +1,6 @@
 // AI Configuration - Google Gemini API
 export const AI_CONFIG = {
-  GEMINI_API_KEY: 'AIzaSyA6z1mSKg812YmaDchuFUuqMwmv9xiXE60', // Replace with your actual Google Gemini API key
+  GEMINI_API_KEY: 'AIzaSyAlCrCcCMR7B1pmqsj4PpkeQpKwCCqRYL0M', // Replace with your actual Google Gemini API key
   MODEL_NAME: 'gemini-1.5-flash', // Fast and efficient model
   TIMEOUT: 30000, // 30 seconds
   TEMPERATURE: 0.7,
